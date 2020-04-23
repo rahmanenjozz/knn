@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+	Machine Learning KNN
+{% endblock %}
+
+{% block body %}
+
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-success shadow-sm">
+		<span class="navbar-brand mb-0 h1">MamaNs</span>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active" href="/dataset">Dataset</a>
+			</li>
+		</ul>
+	</nav><br><br><br>
+	<div class="container">
+		<div class="alert alert-success" role="alert">
+			<h4 class="alert-heading">Hello Everyone!</h4>
+			<p>Aww yeah, Now I need support from everyone, so i can continue to make something like this. Support me by following on social media.</p>
+			<hr>
+			<p class="mb-0"><a href="https://www.youtube.com/mamans" class="alert-link">Youtube </a>|<a href="https://www.instagram.com/rahmanenjozz/" class="alert-link"> Instagram </a>|<a href="https://twitter.com/rahmanenjozz" class="alert-link"> Twitter</a></p>
+		</div>
+	</div>
+	<div class="container">
+		<div class="card">
+			<h5 class="card-header">K Nearest Neighbor</h5>
+			<div class="card-body">
+				<h6 class="card-title">Dataset penerima modal UMKM</h6>
+				{{ items | safe }}
+			</div>
+		</div>
+	</div>
+
+	
+{% endblock %}

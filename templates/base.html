@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+	Machine Learning KNN
+{% endblock %}
+
+{% block body %}
+
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-success shadow-sm">
+		<span class="navbar-brand mb-0 h1">MamaNs</span>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/dataset">Dataset</a>
+			</li>
+		</ul>
+	</nav><br><br><br>
+	<div class="container">
+		<div class="alert alert-success" role="alert">
+			<h4 class="alert-heading">Hello Everyone!</h4>
+			<p>Aww yeah, Now I need support from everyone, so i can continue to make something like this. Support me by following on social media.</p>
+			<hr>
+			<p class="mb-0"><a href="https://www.youtube.com/mamans" class="alert-link">Youtube </a>|<a href="https://www.instagram.com/rahmanenjozz/" class="alert-link"> Instagram </a>|<a href="https://twitter.com/rahmanenjozz" class="alert-link"> Twitter</a></p>
+		</div>
+	</div>
+	
+
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}<br>
+			<div class="alert container alert-danger alert-dismissible fade show" role="alert">
+				<strong>{{message}}</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>			
+		{% endfor %}
+	{% endif %}
+	{% endwith %}
+	<div class="container">
+		<div class="card">
+			<h5 class="card-header">K Nearest Neighbor</h5>
+			<div class="card-body">
+				<h6 class="card-title">Indikator UMKM</h6>
+				<form action="/" method="post">
+					<div class="form-row">
+						<div class="col">
+							<input type="number" min="1" class="form-control" placeholder="Lama Usaha" name="lama_usaha" aria-describedby="lamausahaHelpBlock">
+							<small id="lamausahaHelpBlock" class="form-text text-muted">Lama usaha yang telah berjalan (dalam tahun)</small>
+						</div>
+						<div class="col">
+							<input type="number" min="1" class="form-control" placeholder="Jumlah Pekerja" name="jumlah_pekerja" aria-describedby="jumlahpekerjaHelpBlock">
+							<small id="jumlahpekerjaHelpBlock" class="form-text text-muted">Total pekerja yang dimiliki</small>
+						</div>
+						<div class="col">
+							<input type="number" min="1" class="form-control" placeholder="Omzet" name="omzet" aria-describedby="omzetHelpBlock">
+							<small id="omzetHelpBlock" class="form-text text-muted">Jumlah omzet yg didapatkan (dalam juta)</small>
+						</div>
+						<div class="col">
+							<input type="number" min="1" class="form-control" placeholder="Jumlah Aset" name="jumlah_aset" aria-describedby="jumlahasetHelpBlock">
+							<small id="jumlahasetHelpBlock" class="form-text text-muted">Total aset yang dimiliki</small>
+						</div>
+					</div><br>
+					<h6 class="card-title">Neighbors</h6>
+					<div class="form-row">
+						<div class="col-3">
+							<input type="number" min="1" max="22" class="form-control" placeholder="K" name="k" aria-describedby="KHelpBlock">
+							<small id="KHelpBlock" class="form-text text-muted">Jarak ke tetanggaan (K)</small>
+						</div>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary" value="Submit">Hitung</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	{% if not evaluat %}
+			<h6></h6>
+	{% else %}
+	<div class="container mt-5">
+		<div class="card">
+			<h5 class="card-header">Hasil</h5>
+			<div class="card-body">
+				<h6 class="card-title">Indikator UMKM</h6>
+				<p class="card-text">UMKM yang memiliki lama usaha {{lama_usaha}} tahun, {{jumlah_pekerja}} pekerja, omzet {{omzet}} juta, dan jumlah aset sebanyak {{jumlah_aset}}</p>
+
+				<h6 class="card-title">Neighbors</h6>
+				<p class="card-text">Dengan nilai K = {{k}} sebagai berikut:</p>
+				<div><style>.dataframe thead th { text-align: center; }</style>
+					{{skor | safe}}
+				</div>
+				<p class="card-text">Dengan rincian sebagai berikut:</p>
+				<div><style>.dataframe thead th { text-align: center; }</style>
+					{{keputusan | safe}}
+				</div>
+				<h6 class="card-title">Maka hasilnya rekomendasinya adalah</h6>
+				<p class="text-danger"> {{ evaluat }}</p>
+			</div>
+		</div>
+	</div>
+
+	{% endif %}
+
+	
+{% endblock %}
